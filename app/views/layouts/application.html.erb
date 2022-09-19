@@ -21,8 +21,9 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li>
-                  <a class="nav-link text-light" href="/">
-                    <i class="fas fa-home"></i> Home</a>
+                  <%= link_to user_path(current_user.id),class: 'nav-link text-light' do %>
+                    <i class="fas fa-home"></i> Home
+                  <% end %>
                 </li>
                 <li>
                   <a class="nav-link text-light" href="/users">
@@ -59,7 +60,12 @@
         </div>
       </nav>
   </header>
+  <main>
+    <p class="text-success">
+      <%= flash[:notice] %>
+    </p>
     <%= yield %>
+  </main>
   </body>
 
   <footer>
