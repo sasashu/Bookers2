@@ -3,6 +3,11 @@
     <div class="col-md-3">
       <h2>User info</h2>
       <table>
+          <thead>
+            <tr>
+              <%= image_tag 'no_image', size: "100x100" %>
+            </tr>
+          </thead>
           <tbody>
             <tr>
               <th>name</th>
@@ -11,6 +16,12 @@
             <tr>
               <th>introduction</th>
               <th><%= @user.introduction %></th>
+            </tr>
+            <tr>
+              <th colspan="2">
+              <%= link_to edit_user_path(current_user), class:"btn btn-default btn-block" do %>
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+              <% end %>
             </tr>
         </tbody>
       </table>
@@ -24,11 +35,12 @@
         <%= form_with model: @books, url:'/books', method: :post do |f| %>
           <div class="form">
             <label for="book_body">Title</label>
-            <input class="form-control book_title" type="text" name="book[title]" id="book_title" kl_vkbd_parsed="true">
+            <%= f.text_field :title ,class: "form-control" %>
+
           </div>
           <div class="form mt-3">
             <label for="book_body">Opinion</label>
-            <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
+            <%= f.text_area :body , class: "form-control" %>
           </div>
           <div class="actions mt-3">
             <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book" kl_vkbd_parsed="true">
