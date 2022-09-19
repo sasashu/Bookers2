@@ -8,8 +8,9 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      redirect_to book_path(@book.id), notice: 'Book was successfully created.'
+      redirect_to book_path(@book), notice: 'Book was successfully created.'
     else
+      @user = current_user
       @books = Book.all
       render :index
     end
@@ -22,18 +23,25 @@ class BooksController < ApplicationController
   end
 
   def show
+    @books = Book.all
     @book = Book.find(params[:id])
     @user = @book.user
+    # @books = @user.books
   end
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user == current_user
+      render :edit
+    else
+      redirect_to books_path
+    end
   end
   
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-    redirect_to book_path(book.id),notice: 'Book was successfully updated.'
+    redirect_to book_path(@book.id),notice: 'Book was successfully updated.'
     else
       @books = Book.all
       render :edit

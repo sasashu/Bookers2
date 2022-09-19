@@ -1,2 +1,18 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>User info</h1>
+      <%= form_with model: @book do |f| %>
+        <div class="user-name my-2">Title</div>
+          <%= f.text_field :title ,class: "form-control" %>
+
+        <div class="form-body my-2">Opinion</div>
+          <%= f.text_area :body , class: "form-control mb-3" %>
+
+        <div class="upload mb-2">
+          <button type="submit" class="btn btn-secondary">Update Book</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
