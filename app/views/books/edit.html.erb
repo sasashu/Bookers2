@@ -24,6 +24,9 @@
           <button type="submit" class="btn btn-success">Update Book</button>
         </div>
       <% end %>
+      <%= link_to "Show",book_path(@book.id) %>
+      |
+      <%= link_to "Back",books_path %>
     </div>
   </div>
 </div>
